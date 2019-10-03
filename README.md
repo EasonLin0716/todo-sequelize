@@ -23,5 +23,6 @@ module.exports = {
 }
 ```
 Otherwise npm run dev would crush.
+
 6. npm run dev
 7. See it on http://localhost:3000
