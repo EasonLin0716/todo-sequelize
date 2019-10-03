@@ -27,30 +27,7 @@ app.use(methodOverride('_method'))
 app.get('/', (req, res) => {
   res.send('hello world')
 })
-// login page
-app.get('/users/login', (req, res) => {
-  res.render('login')
-})
-// login check
-app.post('/users/login', (req, res) => {
-  res.send('login')
-})
-// register page
-app.get('/users/register', (req, res) => {
-  res.render('register')
-})
-// register check
-app.post('/users/register', (req, res) => {
-  User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  }).then(user => res.redirect('/'))
-})
-// logout
-app.get('/users/logout', (req, res) => {
-  res.send('logout')
-})
+app.use('/users', require('./routes/user'))
 
 /* ----- listen to port 3000 ----- */
 app.listen(port, () => {
