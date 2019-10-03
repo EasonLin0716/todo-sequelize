@@ -4,7 +4,7 @@ Classic Todo list built with express.js and MySQL
 1. Create your todo things
 2. Read, edit or delete it
 ## Preview
-![Cover]()
+![Cover](https://github.com/EasonLin0716/todo-sequelize/blob/master/previews/cover.JPG)
 ## Environment set up
 1. Node.js
 2. MySQL
