@@ -5,6 +5,7 @@ const FacebookStrategy = require('passport-facebook').Strategy
 const db = require('../models')
 const User = db.User
 const bcrypt = require('bcryptjs')
+const keys = require('./keys')
 module.exports = passport => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -26,8 +27,8 @@ module.exports = passport => {
 
   passport.use(
     new FacebookStrategy({
-      clientID: '2531035370328376',
-      clientSecret: '63165577d25f6f55ea25ed6307bb817f',
+      clientID: keys.facebook.clientID,
+      clientSecret: keys.facebook.clientSecret,
       callbackURL: 'http://localhost:3000/auth/facebook/callback',
       profileFields: ['email', 'displayName']
     }, (accessToken, refreshToken, profile, done) => {
