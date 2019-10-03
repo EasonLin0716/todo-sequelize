@@ -4,6 +4,7 @@ const router = express.Router()
 const passport = require('passport')
 const db = require('../models')
 const User = db.User
+const bcrypt = require('bcryptjs')
 
 // login page
 router.get('/login', (req, res) => {
@@ -38,17 +39,23 @@ router.post('/register', (req, res) => {
         email,
         password,
       })
-      newUser
-        .save()
-        .then(user => {
-          res.redirect('/')
-        })
-        .catch(err => console.log(err))
+      bcrypt.genSalt(10, (err, salt) =>
+        // combine salt with password output hash
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err
+          newUser.password = hash
+          newUser.save()
+            .then(user => {
+              res.redirect('/')
+            })
+            .catch(err => console.log(err))
+        }))
     }
   })
 })
 // logout
 router.get('/logout', (req, res) => {
-  res.send('logout')
+  req.logout()
+  res.redirect('/users/login')
 })
 module.exports = router
