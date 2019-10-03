@@ -13,5 +13,15 @@ Classic Todo list built with express.js and MySQL
 2. Open a terminal
 3. cd file location
 4. npm install
-5. npm run dev
-6. See it on http://localhost:3000
+5. go to ./config/, create a file named 'keys.js', paste the following codes:
+```
+module.exports = {
+  facebook: {
+    clientID: 'Your facebook key',
+    clientSecret: 'Your facebook secret'
+  }
+}
+```
+Otherwise npm run dev would crush.
+6. npm run dev
+7. See it on http://localhost:3000
