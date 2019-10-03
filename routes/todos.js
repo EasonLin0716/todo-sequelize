@@ -35,7 +35,9 @@ router.post('/', authenticated, (req, res) => {
     done: false,
     UserId: req.user.id
   })
-    .then((todo) => { return res.redirect('/') })
+    .then((todo) => {
+      return res.redirect('/')
+    })
     .catch((error) => { return res.status(422).json(error) })
 })
 // edit Todo page
