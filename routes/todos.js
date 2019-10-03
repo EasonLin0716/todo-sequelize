@@ -10,7 +10,7 @@ router.get('/', authenticated, (req, res) => {
 })
 // create Todo page
 router.get('/new', authenticated, (req, res) => {
-  res.send('create a Todo page')
+  res.render('new')
 })
 // show a Todo detail
 router.get('/:id', authenticated, (req, res) => {
