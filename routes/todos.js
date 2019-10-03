@@ -14,23 +14,76 @@ router.get('/new', authenticated, (req, res) => {
 })
 // show a Todo detail
 router.get('/:id', authenticated, (req, res) => {
-  res.send('show a Todo detail')
+  User.findByPk(req.user.id)
+    .then((user) => {
+      if (!user) throw new Error("user not found");
+
+      return Todo.findOne({
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        }
+      })
+    })
+    .then((todo) => { return res.render('detail', { todo: todo }) })
+    .catch((error) => { return res.status(422).json(error) })
 })
 // create Todo
 router.post('/', authenticated, (req, res) => {
-  res.send('create a Todo')
+  Todo.create({
+    name: req.body.name,
+    done: false,
+    UserId: req.user.id
+  })
+    .then((todo) => { return res.redirect('/') })
+    .catch((error) => { return res.status(422).json(error) })
 })
 // edit Todo page
 router.get('/:id/edit', authenticated, (req, res) => {
-  res.send('edit Todo page')
+  User.findByPk(req.user.id)
+    .then((user) => {
+      if (!user) throw new Error("user not found")
+      return Todo.findOne({
+        where: {
+          Id: req.params.id,
+          UserId: req.user.id,
+        }
+      })
+    })
+    .then((todo) => { return res.render('edit', { todo: todo }) })
 })
 // edit Todo
 router.put('/:id', authenticated, (req, res) => {
-  res.send('edit Todo')
+  Todo.findOne({
+    where: {
+      Id: req.params.id,
+      UserId: req.user.id,
+    }
+  })
+    .then((todo) => {
+      todo.name = req.body.name
+      todo.done = req.body.done === "on"
+
+      return todo.save()
+    })
+    .then((todo) => { return res.redirect(`/todos/${req.params.id}`) })
+    .catch((error) => { return res.status(422).json(error) })
 })
 // delete Todo
 router.delete('/:id/delete', authenticated, (req, res) => {
-  res.send('delete Todo')
+  User.findByPk(req.user.id)
+    .then((user) => {
+      if (!user) throw new Error("user not found")
+
+      return Todo.destroy({
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        }
+      })
+    })
+    .then((todo) => { return res.redirect('/') })
+    .catch((error) => { return res.status(422).json(error) })
 })
 
 module.exports = router
