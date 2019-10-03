@@ -38,10 +38,9 @@ app.use((req, res, next) => {
 
 /* ----- Set routes ----- */
 // home
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.use('/', require('./routes/home'))
 app.use('/users', require('./routes/user'))
+app.use('/todos', require('./routes/todos'))
 
 /* ----- listen to port 3000 ----- */
 app.listen(port, () => {
