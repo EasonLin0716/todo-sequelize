@@ -46,11 +46,13 @@ app.use((req, res, next) => {
 })
 
 /* ----- Set routes ----- */
-
-app.use('/', require('./routes/home'))
 app.use('/users', require('./routes/user'))
 app.use('/todos', require('./routes/todos'))
 app.use('/auth', require('./routes/auths'))
+app.use('/', require('./routes/home'))
+app.get('*', (req, res) => {
+  res.redirect('/')
+})
 /* ----- listen to port 3000 ----- */
 app.listen(port, () => {
   console.log(`App is running on port ${port}`)
