@@ -33,6 +33,7 @@ router.post('/', authenticated, (req, res) => {
   Todo.create({
     name: req.body.name,
     done: false,
+    importance: req.body.importance,
     UserId: req.user.id
   })
     .then((todo) => {
@@ -65,7 +66,7 @@ router.put('/:id', authenticated, (req, res) => {
     .then((todo) => {
       todo.name = req.body.name
       todo.done = req.body.done === "on"
-
+      todo.importance = req.body.importance
       return todo.save()
     })
     .then((todo) => { return res.redirect(`/todos/${req.params.id}`) })
