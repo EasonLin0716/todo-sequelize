@@ -1,7 +1,7 @@
 <!-- ./views/index.handlebars -->
 <div class="d-flex justify-content-between">
   <a href="/todos/new" class="btn btn-primary mb-1">Create</a>
-  {{!-- <div class="dropdown mb-1 d-flex justify-content-end">
+  <div class="dropdown mb-1 d-flex justify-content-end">
     <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
       排序方式
     </button>
@@ -11,7 +11,7 @@
       <a class="dropdown-item" href="/?sortTarget=importance&sortType=desc">★★★->★</a>
       <a class="dropdown-item" href="/?sortTarget=importance&sortType=asc">★->★★★</a>
     </div>
-  </div> --}}
+  </div>
 </div>
 <ul class="list-group">
   {{#each todos}}
