@@ -27,6 +27,4 @@ footer {
 
 @media screen and (max-width: 768px) {
   #welcome-word {
-    display: none; }
-  #welcome-word-thin:after {
-    content: '歡迎回來！'; } }
+    display: none; } }
