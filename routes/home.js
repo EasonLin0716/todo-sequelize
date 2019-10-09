@@ -4,6 +4,7 @@ const db = require('../models')
 const Todo = db.Todo
 const User = db.User
 const { authenticated } = require('../config/auth')
+
 // list all Todo
 router.get('/', authenticated, (req, res) => {
   let orderResult = []
