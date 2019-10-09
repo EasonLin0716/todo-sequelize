@@ -22,7 +22,7 @@ router.get('/', authenticated, (req, res) => {
         order: orderResult
       })
     })
-    .then((todos) => { return res.render('index', { todos: todos }) })
+    .then((todos) => { return res.render('index', { todos: todos, userName: req.user.name }) })
     .catch((error) => { return res.status(422).json(error) })
 })
 module.exports = router

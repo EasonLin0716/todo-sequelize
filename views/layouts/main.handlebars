@@ -15,6 +15,9 @@
     <nav class="navbar navbar-dark bg-primary justify-content-between">
       <a class="navbar-brand" href="/">Todo List</a>
       {{#if isAuthenticated}}
+      <article class="text-light" id="welcome-word">歡迎回來，{{{userName}}}！準備好迎接下一份挑戰了嗎？</article><span class="text-light"
+        id="welcome-word-thin"></span>
+
       <a href="/users/logout" class="btn btn-outline-light">Logout</a>
       {{else}}
       <a href="/users/login" class="btn btn-outline-light">Login</a>
