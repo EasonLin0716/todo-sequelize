@@ -20,11 +20,19 @@
 
 
       <div class="mr-auto">
+        {{#if this.done}}
         <form action="/todos/{{this.id}}?_method=PUT" method="POST" id="done-submit">
-          <input type="checkbox" name="done" {{#if this.done}} checked{{/if}}>
+          <input type="checkbox" name="done" checked>
+          <h4 class="isDone" style="display:inline; vertical align=middle;">{{{this.name}}}</h4>
+          <h4 style="display:inline; vertical align=middle;">{{{this.importance}}}</h4>
+        </form>
+        {{else}}
+        <form action="/todos/{{this.id}}?_method=PUT" method="POST" id="done-submit">
+          <input type="checkbox" name="done">
           <h4 style="display:inline; vertical align=middle;">{{{this.name}}}</h4>
           <h4 style="display:inline; vertical align=middle;">{{{this.importance}}}</h4>
         </form>
+        {{/if}}
       </div>
 
 

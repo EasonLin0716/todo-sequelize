@@ -14,6 +14,8 @@ todoList.addEventListener('click', (event) => {
     //     myJson[id - 1].done = true
     //   })
     // console.log(id)
+    const labelName = event.target.parentNode.children[1]
+    labelName.classList.toggle('isDone')
     const selectedForm = event.target.parentNode
     selectedForm.submit()
   }

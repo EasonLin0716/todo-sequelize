@@ -25,6 +25,9 @@ footer {
   footer .footer-content {
     padding: 20px 0; }
 
+.isDone {
+  text-decoration: line-through; }
+
 @media screen and (max-width: 768px) {
   #welcome-word {
     display: none; } }
