@@ -6,7 +6,10 @@ const User = db.User
 const { authenticated } = require('../config/auth')
 // list all Todo
 router.get('/', authenticated, (req, res) => {
-  res.send('列出全部 Todo')
+  // Todo.findAll()
+  //   .then(todo => {
+  //     res.send(todo)
+  //   })
 })
 // create Todo page
 router.get('/new', authenticated, (req, res) => {
@@ -69,7 +72,8 @@ router.put('/:id', authenticated, (req, res) => {
       todo.importance = req.body.importance
       return todo.save()
     })
-    .then((todo) => { return res.redirect(`/todos/${req.params.id}`) })
+    .then((todo) => { return res.redirect(`/`) })
+    // .then((todo) => { return res.redirect(`/todos/${req.params.id}`) })
     .catch((error) => { return res.status(422).json(error) })
 })
 // delete Todo

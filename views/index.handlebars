@@ -18,11 +18,15 @@
   <li class="list-group-item">
     <div class="row">
 
+
       <div class="mr-auto">
-        <input type="checkbox" name="done" {{#if this.done}} checked{{/if}}>
-        <h4 style="display:inline; vertical align=middle;">{{{this.name}}}</h4>
-        <h4 style="display:inline; vertical align=middle;">{{{this.importance}}}</h4>
+        <form action="/todos/{{this.id}}?_method=PUT" method="POST" id="done-submit">
+          <input type="checkbox" name="done" {{#if this.done}} checked{{/if}}>
+          <h4 style="display:inline; vertical align=middle;">{{{this.name}}}</h4>
+          <h4 style="display:inline; vertical align=middle;">{{{this.importance}}}</h4>
+        </form>
       </div>
+
 
       <div class="col-auto">
         <a href="/todos/{{{this.id}}}" class="btn btn-secondary">detail</a>
@@ -36,3 +40,15 @@
   </li>
   {{/each}}
 </ul>
+<script src="/javascripts/checkboxClick.js"></script>
+
+
+
+{{!-- 
+<form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
+  <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
+  <label class="todo-label cursor mb-0" for="{{this.id}}">
+    <input class="todo-name h5 mb-0 unselectable" name="name" value="{{this.name}}" data-id="{{this.id}}" disabled>
+  </label>
+  <small class="text-info" data-id="{{this.id}}" hidden>按下 Enter 完成修改</small>
+</form> --}}
